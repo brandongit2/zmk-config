@@ -79,22 +79,28 @@
     };
 };
 
+// Trackball processing is done by the imprint_tuner input processor (see
+// src/trackball_tuner.c): its settings (scroll or cursor, speed, axes,
+// acceleration) are changed live from the Imprint companion app and saved on
+// the keyboard. Its defaults match the stock configuration: the left ball
+// scrolls at 1/3 with the vertical axis inverted, the right ball moves the
+// cursor 1:1.
+
+/ {
+    imprint_tuner: imprint_tuner {
+        compatible = "imprint,input-processor-tuner";
+        #input-processor-cells = <1>;
+    };
+};
+
 // right hand trackball configuration
 
-// &trackball_peripheral_listener {
-//    input-processors =
-//     activate layer 3 within 500ms of the trackball moving
-//     <&zip_temp_layer 3 500>;
-// };
+&trackball_peripheral_listener {
+    input-processors = <&imprint_tuner 1>;
+};
 
-//left hand trackball configuration
+// left hand trackball configuration
 
 &trackball_central_listener {
-    input-processors =
-        // multiply sensitivity by 1, divide by 3 (make it slower for scrolling),
-        <&zip_xy_scaler 1 3>,
-        // make this trackball output scrolling events by default instead of cursor movement,
-        <&zip_xy_to_scroll_mapper>,
-        // invert vertical scrolling so that the view moves in the same direction as the top of the trackball.,
-        <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
+    input-processors = <&imprint_tuner 0>;
 };

@@ -1,5 +1,6 @@
-if(CONFIG_ZMK_KEY_EVENTS_GATT)
+if(CONFIG_ZMK_KEY_EVENTS_GATT OR CONFIG_ZMK_IMPRINT_TUNER)
   zephyr_library()
-  zephyr_library_sources(src/key_events_gatt.c)
   zephyr_library_include_directories(${APPLICATION_SOURCE_DIR}/include)
+  zephyr_library_sources_ifdef(CONFIG_ZMK_KEY_EVENTS_GATT src/key_events_gatt.c)
+  zephyr_library_sources_ifdef(CONFIG_ZMK_IMPRINT_TUNER src/trackball_tuner.c)
 endif()

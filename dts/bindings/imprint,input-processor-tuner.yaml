@@ -1,0 +1,8 @@
+description: |
+  Input processor for the Imprint trackballs whose settings (cursor or scroll
+  mode, speed, axes, acceleration) can be changed at runtime over BLE and are
+  saved in flash. The parameter selects the settings slot: 0 = left, 1 = right.
+
+compatible: "imprint,input-processor-tuner"
+
+include: ip_one_param.yaml

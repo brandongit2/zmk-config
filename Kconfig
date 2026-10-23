@@ -6,3 +6,12 @@ config ZMK_KEY_EVENTS_GATT
       Exposes a GATT characteristic that notifies the host each time a
       physical key position is pressed or released, and whenever the set of
       active layers changes. Used by the Imprint companion app.
+
+config ZMK_IMPRINT_TUNER
+    bool "Trackball settings adjustable at runtime over BLE"
+    default y
+    depends on ZMK_BLE && ZMK_POINTING && (!ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL)
+    select SETTINGS
+    help
+      Input processor for the trackballs, configured from the Imprint
+      companion app through a GATT characteristic and saved in flash.
