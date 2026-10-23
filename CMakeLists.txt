@@ -1,0 +1,5 @@
+if(CONFIG_ZMK_KEY_EVENTS_GATT)
+  zephyr_library()
+  zephyr_library_sources(src/key_events_gatt.c)
+  zephyr_library_include_directories(${APPLICATION_SOURCE_DIR}/include)
+endif()

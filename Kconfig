@@ -1,0 +1,8 @@
+config ZMK_KEY_EVENTS_GATT
+    bool "Report key positions and active layers over a BLE GATT service"
+    default y
+    depends on ZMK_BLE && (!ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL)
+    help
+      Exposes a GATT characteristic that notifies the host each time a
+      physical key position is pressed or released, and whenever the set of
+      active layers changes. Used by the Imprint companion app.

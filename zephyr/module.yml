@@ -1,3 +1,6 @@
+name: imprint-key-events
 build:
+  cmake: .
+  kconfig: Kconfig
   settings:
     board_root: .
