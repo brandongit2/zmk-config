@@ -9,11 +9,19 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      # Pinned to the latest stable ZMK release, matching the Cyboard Studio
+      # firmware stack. To track current ZMK main (Zephyr 4.1) instead, set
+      # this to main and use the zephyr-4.1 branch of zmk-keyboards below.
+      revision: v0.3.0
       import: app/west.yml
     - name: zmk-keyboards
       remote: Cyboard-DigitalTailor
-      revision: main
+      # Pinned to a tagged release so the board and physical-layout
+      # definitions stay frozen: a later change to zmk-keyboards main cannot
+      # shift key positions or binding order under your keymap. Bump this tag
+      # deliberately when you want newer boards/layouts (see the README). To
+      # track current ZMK main (Zephyr 4.1) instead, set this to zephyr-4.1.
+      revision: v2026.07
       import: config/west.yml
   self:
     path: config

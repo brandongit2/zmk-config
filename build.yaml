@@ -18,7 +18,11 @@
 #
 ---
 include:
+  # ZMK Studio (studio.cyboard.digital) talks to the left (central) half
+  # over USB. Unlock by holding the A- and F-position keys for 3 seconds.
   - board: assimilator-bt
     shield: imprint_left
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
   - board: assimilator-bt
     shield: imprint_right
